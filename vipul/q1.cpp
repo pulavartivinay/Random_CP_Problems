@@ -22,41 +22,14 @@ typedef vector<pl> vpl;
 
 const char nl = '\n';
 
-void dfsHelper(vector<vl> &ans, vl temp, vl A, ll i){
-    ans.push_back(temp);
-    for(ll j=i; j<A.size(); ++j){
-        temp.push_back(A[i]);
-        dfsHelper(ans, temp, A, j+1);
-        temp.pop_back();
-    }
-}
+template <class T> void swap(T &a, T &b);
 
 void solution(){
     //write your code here
     ll n; cin >> n;
     vl A(n); for(ll i=0; i<n; ++i) cin >> A[i];
     
-    // brute force approach using backtracking
-    vector<vl> ans;
-    vl temp;
-    dfsHelper(ans, temp, A, 0LL);
-    ll cnt = 0;
-    bool flag;
-    for(auto ar:ans){
-        flag = true;
-        for(ll i=0; i<ar.size(); ++i){
-            if(ar[i]%i+1==0){
-                continue;
-            } else {
-                flag = false;
-                break;
-            }
-        }
-        if(flag){
-            cnt++;
-        }
-    }
-    cout << cnt << nl;
+    
 }
 
 int main() {
