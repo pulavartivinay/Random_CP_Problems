@@ -22,6 +22,8 @@ typedef vector<pl> vpl;
 
 const char nl = '\n';
 
+template<class T> void ckmin(T &a, T b) { a = min(a, b); }
+template<class T> void ckmax(T &a, T b) { a = max(a, b); }
 template <class T> void swap(T &a, T &b);
 
 void solution(){
@@ -34,7 +36,7 @@ void solution(){
 
 int main() {
     //fast i/o
-    ios_base::sync_with_stdio(false);cin.tie(NULL);
+    ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 
     int T=1;
     // cin >> T;
