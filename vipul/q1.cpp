@@ -21,17 +21,44 @@ typedef vector<pl> vpl;
 #define deb(x) cout << #x << " " << x << '\n'
 
 const char nl = '\n';
+const ll MOD = 1000000007LL;
 
 template<class T> void ckmin(T &a, T b) { a = min(a, b); }
 template<class T> void ckmax(T &a, T b) { a = max(a, b); }
 template <class T> void swap(T &a, T &b);
 
+vector<ll> getFactors(ll a){
+    vector<ll> ret;
+    for(ll i=1; i*i<=a; ++i){
+        if(a%i==0){
+            ret.push_back(i);
+            if(i!=a/i){
+                ret.push_back(a/i);
+            }
+        }
+    }
+    return ret;
+}
+
 void solution(){
     //write your code here
     ll n; cin >> n;
     vl A(n); for(ll i=0; i<n; ++i) cin >> A[i];
-    
-    
+
+    unordered_map<ll, ll> dp;
+    dp[0] = 1;
+    for(ll i=0; i<n; ++i){
+        vector<ll> fac = getFactors(A[i]);
+        sort(fac.begin(), fac.end(), greater<ll>());
+        for(ll j=0; j<fac.size(); ++j){
+            dp[fac[j]] = (dp[fac[j]]%MOD + dp[fac[j]-1]%MOD)%MOD;
+        }
+    }
+    ll ans = 0;
+    for(int i=1; i<=n; ++i){
+        ans = (ans%MOD + dp[i]%MOD)%MOD;
+    }
+    cout << ans << nl;
 }
 
 int main() {
